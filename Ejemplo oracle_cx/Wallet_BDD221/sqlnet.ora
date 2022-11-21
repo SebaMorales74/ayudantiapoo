@@ -1,0 +1,2 @@
+WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/Users/Sebastian/Documents/GitHub/ayudantiapoo/Ejemplo oracle_cx/Wallet_BDD221")))
+SSL_SERVER_DN_MATCH=yes
