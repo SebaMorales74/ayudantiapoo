@@ -24,10 +24,8 @@ class Jugador:
         if keys[pygame.K_s]:
             self.hitbox.y += self.speed
         
-
         if self.hitbox.y<self.carriles[0]:
             self.hitbox.y = self.carriles[0]
-
         if self.hitbox.y>self.carriles[1]:
             self.hitbox.y = self.carriles[1]
         

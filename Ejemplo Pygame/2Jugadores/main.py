@@ -21,7 +21,7 @@ class Player:
 
         self.hitbox = pygame.Rect(0, 0, alto, ancho)
         self.hitbox.center = ventana.get_rect().center
-        self.image = pygame.image.load(os.path.join("Ejemplo pygame","sprites",image))
+        self.image = pygame.image.load(os.path.join("Ejemplo pygame","2Jugadores","sprites",image))
         self.image = pygame.transform.scale(self.image, (alto, ancho))
         self.image.set_colorkey((255, 255, 255))
         self.velocidad = velocidad
@@ -76,7 +76,6 @@ class Player:
 
 
 class World:
-
     def __init__(self, data=[], color=(0, 0, 0)):
         self.tile_list = []
 
@@ -99,7 +98,6 @@ class World:
         ventana.fill(self.color)
         for tile in self.tile_list:
             pygame.draw.rect(ventana, (173, 112, 71), tile)
-
 
 world_map = [
     [
