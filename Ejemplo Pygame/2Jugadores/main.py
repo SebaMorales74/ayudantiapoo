@@ -1,5 +1,5 @@
 import pygame
-import Personajes
+import os
 
 pygame.init()
 
@@ -14,14 +14,14 @@ class Player:
                  ancho=20,
                  velocidad=5,
                  color=(255, 255, 255),
-                 image="./assets/sprites/firedude.png",
+                 image="firedude.png",
                  derecha=pygame.K_d,
                  izquierda=pygame.K_a,
                  arriba=pygame.K_w):
 
         self.hitbox = pygame.Rect(0, 0, alto, ancho)
         self.hitbox.center = ventana.get_rect().center
-        self.image = pygame.image.load("./assets/sprites/" + image)
+        self.image = pygame.image.load(os.path.join("Ejemplo pygame","sprites",image))
         self.image = pygame.transform.scale(self.image, (alto, ancho))
         self.image.set_colorkey((255, 255, 255))
         self.velocidad = velocidad
@@ -174,10 +174,6 @@ world_map = [
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         1
     ],
-    [
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1
-    ],
 ]
 
 world = World(world_map, (107, 95, 55))
@@ -186,8 +182,6 @@ jugador = Player(32, 48, 5, (255, 98, 0), "firedude.png", pygame.K_RIGHT,
                  pygame.K_LEFT, pygame.K_UP)
 jugador2 = Player(32, 48, 5, (0, 98, 255), "waterchick.png", pygame.K_d,
                   pygame.K_a, pygame.K_w)
-
-personajes = Personajes()
 
 while True:
     fps.tick(60)
