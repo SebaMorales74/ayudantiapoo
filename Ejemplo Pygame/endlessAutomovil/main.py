@@ -1,5 +1,7 @@
 import pygame, random
+import os
 pygame.init()
+
 
 size = width, height = 800,600
 ventana = pygame.display.set_mode(size)
@@ -7,7 +9,7 @@ fps = pygame.time.Clock()
 
 class Jugador:
     def __init__(self):
-        self.imagen = pygame.image.load('./autito.png').convert_alpha()
+        self.imagen = pygame.image.load(r"C:/GitHub/ayudantiapoo/Ejemplo Pygame/endlessAutomovil/autito.png").convert_alpha()
         self.hitbox = self.imagen.get_rect()
         self.carriles = [260,400]
         self.x = 120
@@ -33,7 +35,7 @@ class Jugador:
 
 class Enemigo:
     def __init__(self):
-        self.imagen = pygame.image.load('./autito_blanco.png').convert_alpha()
+        self.imagen = pygame.image.load(r"C:/GitHub/ayudantiapoo/Ejemplo Pygame/endlessAutomovil/autito_blanco.png").convert_alpha()
         self.hitbox = self.imagen.get_rect()
         self.carriles = [320,430]
         self.x = width+300
@@ -51,13 +53,13 @@ class Enemigo:
         self.collide = self.hitbox.colliderect(player.hitbox)
         
         if self.collide == True:
-            player.gameover = True
+            print("ME CHOCASTE PUTA")
 
         ventana.blit(self.imagen,self.hitbox)  
 
 class Moneda:
     def __init__(self):
-        self.imagen = pygame.image.load('./moneda de 500.png').convert_alpha()
+        self.imagen = pygame.image.load(r"C:/GitHub/ayudantiapoo/Ejemplo Pygame/endlessAutomovil/moneda de 500.png").convert_alpha()
         self.hitbox = self.imagen.get_rect()
         self.carriles = [430,320]
         self.x = width+300
@@ -86,7 +88,7 @@ class Moneda:
 
 class Carretera:
     def __init__(self,limite=1):
-        self.imagen = pygame.image.load('./carretera.png').convert_alpha()
+        self.imagen = pygame.image.load(r"C:/GitHub/ayudantiapoo/Ejemplo Pygame/endlessAutomovil/carretera.png").convert_alpha()
         self.imagen = pygame.transform.scale(self.imagen,(width+200,height+200))
         self.hitbox = self.imagen.get_rect()
         self.limite = -limite
