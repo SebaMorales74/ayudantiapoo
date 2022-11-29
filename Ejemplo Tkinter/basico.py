@@ -15,7 +15,7 @@ input_nombre.place(x=width/2, y=height/2 + 20, anchor="center")
 def saludar():
     print("Hola", input_nombre.get())
 
-button_saludar = ttk.Button(text="Saludar", command=lambda: print("Hola", input_nombre.get()))
+button_saludar = ttk.Button(text="Saludar", command=saludar)
 button_saludar.place(x=width/2, y=height/2 + 60, anchor="center")
 
 ventana.mainloop()
