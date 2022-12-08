@@ -3,12 +3,13 @@ from tkinter import ttk
 
 ventana = tk.Tk()
 tamaño = width, height = 300, 300
-ventana.title("Ejemplo con POO")
 ventana.config(width=width, height=height)
 
 class Login(ttk.Frame):
     def __init__(self, parent):
+
         super().__init__(parent)
+        parent.title("Login")
 
         self.titulo = ttk.Label(text="Login", style="TLabel")
         self.titulo.place(x=width/2, y=100, anchor="center")
@@ -47,6 +48,8 @@ class Productos(ttk.Frame):
         self.productos = []
 
         super().__init__(parent)
+        parent.title("Productos")
+
         self.label_titulo = ttk.Label(text="Productos", style="TLabel")
         self.label_titulo.place(x=width/2, y=80, anchor="center")
 
@@ -56,14 +59,11 @@ class Productos(ttk.Frame):
         self.input_precio = ttk.Entry()
         self.input_precio.place(x=width/2, y=140, anchor="center")
 
-        self.button_agregar = ttk.Button(text="Agregar", command=self.agregarProducto)
+        self.button_agregar = ttk.Button(text="Agregar productos", command=self.agregarProducto)
         self.button_agregar.place(x=width/2, y=height/2 + 60, anchor="center")
 
-        self.button_print = ttk.Button(text="Imprimir productos", command=self.imprimirProductos)
-        self.button_print.place(x=width/2, y=height/2 + 90, anchor="center")
-
-        self.button_editar = ttk.Button(text="Editar productos", command=self.editarProductos)
-        self.button_editar.place(x=width/2, y=height/2 + 120, anchor="center")
+        self.button_visualizar = ttk.Button(text="Visualizar productos", command=self.visualizarProductos)
+        self.button_visualizar.place(x=width/2, y=height/2 + 90, anchor="center")
        
     def agregarProducto(self):
         self.producto = self.input_producto.get()
@@ -74,21 +74,18 @@ class Productos(ttk.Frame):
         self.input_precio.delete(0, "end")
 
         try:
+            self.tabla.delete(*self.tabla.get_children())
             for producto in self.productos:
                 self.tabla.insert("", "end", text=producto["id"], values=(producto["producto"], producto["precio"]))
         except:
             pass
 
+    def visualizarProductos(self):
+        self.visualizarProductos = tk.Toplevel()
+        self.visualizarProductos.title("Visualizacion de productos")
+        self.visualizarProductos.config(width=600, height=600)
 
-    def imprimirProductos(self):
-        print(self.productos)
-
-    def editarProductos(self):
-        self.editarProductos = tk.Toplevel()
-        self.editarProductos.title("Editar productos")
-        self.editarProductos.config(width=600, height=600)
-
-        self.tabla = ttk.Treeview(self.editarProductos, columns=("Producto", "Precio"))
+        self.tabla = ttk.Treeview(self.visualizarProductos, columns=("Producto", "Precio"))
         self.tabla.heading("#0", text="ID")
         self.tabla.heading("#1", text="Producto")
         self.tabla.heading("#2", text="Precio")
@@ -97,7 +94,7 @@ class Productos(ttk.Frame):
         for producto in self.productos:
             self.tabla.insert("", "end", text=producto["id"], values=(producto["producto"], producto["precio"]))
 
-        self.button_mostrarSeleccionado = ttk.Button(self.editarProductos, text="Eliminar producto seleccionado", command=lambda: self.eliminarProducto(self.itemSeleccionado()))
+        self.button_mostrarSeleccionado = ttk.Button(self.visualizarProductos, text="Eliminar producto seleccionado", command=lambda: self.eliminarProducto(self.itemSeleccionado()))
         self.button_mostrarSeleccionado.place(x=300, y=400, anchor="center")
 
     def eliminarProducto(self,item):
